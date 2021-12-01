@@ -32,11 +32,11 @@ class Interface:
         return res
         '''company:1 ez 2 gogocar'''
     #使用refreshtoken获取新token
-    def sessionPut(self,refresh_token):
+    def sessionPut(self,refresh_token,headers):
         path = "/auth/d/session"
         res = requests.put(self.url+path,params={
                 "refresh_token":refresh_token
-        })
+        },headers=headers)
         return res
     #切换公司
     def sessionPatch(self,company):
@@ -503,7 +503,7 @@ class Interface:
         },headers=headers)
         return res
     #email验证唯一性
-    def email(self,username,headers):
+    def email(self,email,headers):
         path = "/auth/n/verify/email"
         res = requests.get(self.url+path,params={
             "email":email
