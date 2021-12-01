@@ -101,7 +101,7 @@ def test_sessionPut1():
     print("#8.使用refreshtoken获取新token[参数空值提交]",test_sessionPut1.json())
     print("="*100)
 # test_sessionPut1()
-    assert str(test_sessionPut1.json()['code']) == "400.1"
+    assert str(test_sessionPut1.json()['code']) == "401.5"
 #9.使用refreshtoken获取新token[参数错误提交]
 def test_sessionPut2():
     refresh_token = loginTwo()
@@ -113,7 +113,7 @@ def test_sessionPut2():
     print("#9.使用refreshtoken获取新token[参数错误提交]",test_sessionPut2.json())
     print("="*100)
 # test_sessionPut2()
-    assert str(test_sessionPut2.json()['code']) == "400.1"
+    assert str(test_sessionPut2.json()['code']) == "401.5"
 #10.使用refreshtoken获取新token[参数正则提交]
 def test_sessionPut3():
     refresh_token = loginTwo()
@@ -125,5 +125,5 @@ def test_sessionPut3():
     print("="*100)
     print("#10.使用refreshtoken获取新token[参数正则提交]",test_sessionPut3.json())
     print("="*100)
-test_sessionPut3()
-    # assert str(test_sessionPut3.json()['code']) == "400.1"
+# test_sessionPut3()
+    assert str(test_sessionPut3.status_code) == "200"

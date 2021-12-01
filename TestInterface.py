@@ -34,9 +34,11 @@ class Interface:
     #使用refreshtoken获取新token
     def sessionPut(self,refresh_token,headers):
         path = "/auth/d/session"
-        res = requests.put(self.url+path,params={
+        res = requests.put(self.url+path,json={
                 "refresh_token":refresh_token
         },headers=headers)
+        print("refresh_token",refresh_token)
+        print("headers",headers)
         return res
     #切换公司
     def sessionPatch(self,company):
