@@ -127,3 +127,14 @@ def test_sessionPut3():
     print("="*100)
 # test_sessionPut3()
     assert str(test_sessionPut3.status_code) == "200"
+#11.切换公司[参数空值提交]
+def test_sessionPatch1():
+    test_sessionPatch1 = inter.sessionPatch(
+        company	 = "",
+        headers = {'Authorization': loginTwo()}
+    
+    )
+    print("="*100)
+    print("#11.切换公司[参数空值提交]",test_sessionPatch1.json())
+    print("="*100)
+test_sessionPatch1()
