@@ -43,7 +43,7 @@ class Interface:
     #切换公司
     def sessionPatch(self,company,headers):
         path = "/auth/d/session"
-        res = requests.patch(self.url+path,params={
+        res = requests.patch(self.url+path,json={
                 "company":company
         },headers=headers)
         return res

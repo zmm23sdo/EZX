@@ -137,4 +137,61 @@ def test_sessionPatch1():
     print("="*100)
     print("#11.切换公司[参数空值提交]",test_sessionPatch1.json())
     print("="*100)
-test_sessionPatch1()
+# test_sessionPatch1()
+    assert str(test_sessionPatch1.json()['code']) == "400.1"
+#12.切换公司[参数错误提交]
+def test_sessionPatch2():
+    test_sessionPatch2 = inter.sessionPatch(
+        company	 = "ABC",
+        headers = {'Authorization': loginTwo()}
+    
+    )
+    print("="*100)
+    print("#12.切换公司[参数错误提交]",test_sessionPatch2.json())
+    print("="*100)
+# test_sessionPatch2()
+    assert str(test_sessionPatch2.json()['code']) == "400.1"
+#13.切换公司[参数EZ提交]
+def test_sessionPatch3():
+    test_sessionPatch3 = inter.sessionPatch(
+        company	 = 1,
+        headers = {'Authorization': loginTwo()}
+    
+    )
+    print("="*100)
+    print("#13.切换公司[参数EZ提交]",test_sessionPatch3.json())
+    print("="*100)
+# test_sessionPatch3()
+    assert str(test_sessionPatch3.status_code) == "200"
+#14.切换公司[参数gogocar提交]
+def test_sessionPatch4():
+    test_sessionPatch4 = inter.sessionPatch(
+        company	 = 2,
+        headers = {'Authorization': loginTwo()}
+    
+    )
+    print("="*100)
+    print("#14.切换公司[参数gogocar提交]",test_sessionPatch4.json())
+    print("="*100)
+# test_sessionPatch4()
+    assert str(test_sessionPatch4.status_code) == "200"
+#15.重置accesstoken到期时间[正则提交]
+def test_sessionAccessToken():
+    test_sessionAccessToken = inter.sessionAccessToken(
+        headers = {'Authorization': loginTwo()}
+    )
+    print("="*100)
+    print("#15.重置accesstoken到期时间[正则提交]",test_sessionAccessToken.json())
+    print("="*100)
+# test_sessionAccessToken()
+    assert str(test_sessionAccessToken.json()['code']) == "200"
+#16.登出[正则提交]
+def test_sessionDelete():
+    test_sessionDelete = inter.sessionDelete(
+        headers = {'Authorization': loginTwo()}
+    )
+    print("="*100)
+    print("16.登出[正则提交]",test_sessionDelete.json())
+    print("="*100)
+# test_sessionDelete()
+    assert str(test_sessionDelete.json()['code']) == "200"
