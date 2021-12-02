@@ -225,3 +225,55 @@ def test_password2():
     print("="*100)
 # test_password2()
     assert str(test_password2.json()['code']) == "200"
+#12.注销用户[参数空值提交]
+def test_usersDelete1():
+    test_usersDelete1 = inter.usersDelete(
+        uuid = "",
+        headers = {'Authorization': loginEZ()}
+    )
+    print("="*100)
+    print("#12.注销用户[参数空值提交]",test_usersDelete1)
+    print("="*100)
+# test_usersDelete1()
+    assert str(test_usersDelete1.status_code) == "404"
+#13.注销用户[参数错误提交]
+def test_usersDelete2():
+    test_usersDelete2 = inter.usersDelete(
+        uuid = "ABC",
+        headers = {'Authorization': loginEZ()}
+    )
+    print("="*100)
+    print("#13.注销用户[参数错误提交]",test_usersDelete2.json())
+    print("="*100)
+# test_usersDelete2()
+    assert str(test_usersDelete2.json()['code']) == "200"
+#14.注销用户[参数正则提交]
+def test_usersDelete3():
+    username = "mvtest"+str(random.randint(0,1000))
+    email = username+"@users.com"
+    addUsers = inter.usersAdd(
+        username = username, 
+        name = Unicode()+GBK2312()+TimeNow(), 
+        phone = Random, 
+        email = email,
+        role = ["Admin", "Owner", "SalesAgent", "Picker", "Checker"], 
+        password = "qwer`123", 
+        headers = {'Authorization': loginEZ()}
+    )
+    print("="*100)
+    print("添加一个可用用户",addUsers.json())
+    print("="*100)
+    #获取用户的uuid,email
+    uuid_usersadd = addUsers.json()["uuid"]
+    print("="*100)
+    print("uuid_usersadd",uuid_usersadd)
+    print("="*100)
+    test_usersDelete3 = inter.usersDelete(
+        uuid = uuid_usersadd,
+        headers = {'Authorization': loginEZ()}
+    )
+    print("="*100)
+    print("#14.注销用户[参数正则提交]",test_usersDelete3.json())
+    print("="*100)
+# test_usersDelete3()
+    assert str(test_usersDelete3.json()['code']) == "200"
