@@ -128,13 +128,13 @@ class Interface:
     #获取账户信息
     def account(self,headers):
         path = "/admin/n/account"
-        res = requests.delete(self.url+path
+        res = requests.get(self.url+path
         ,headers=headers)
         return res
     #修改账户信息
     def accountEdit(self,email,phone,name,headers):
         path = "/admin/n/account"
-        res = requests.patch(self.url+path,params={
+        res = requests.patch(self.url+path,json={
             "email":email,
             "phone":phone,
             "name":name
@@ -143,7 +143,7 @@ class Interface:
     #修改密码
     def passwordAccount(self,password,new_password,confirm_password,headers):
         path = "/admin/n/account/password"
-        res = requests.patch(self.url+path,params={
+        res = requests.put(self.url+path,json={
             "password":password,
             "new_password":new_password,
             "confirm_password":confirm_password

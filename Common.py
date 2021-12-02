@@ -138,4 +138,25 @@ def loginGogocar():
     print("="*100)
     return refresh
 
-
+def loginOther():
+    login1 = inter.verify(
+        username = "mvtest000", 
+        password = "qwer`123", 
+        platform = "admin"
+    )
+    token = str(login1.json()['token'])
+    login2 = inter.session(
+        token = token, 
+        company = 1
+    )
+    refresh2 = str(login2.json()['refresh'])
+    login3 = inter.sessionPatch(
+        company	 = 1,
+        headers = {'Authorization': refresh2}
+    
+    )
+    refresh3 = str(login3.json()['refresh'])
+    print("="*100)
+    print("login3",refresh3)
+    print("="*100)
+    return refresh3
