@@ -64,7 +64,7 @@ class Interface:
 
     '''【users】'''
     #用户列表
-    def users(self,pageSize,page,search,headers):
+    def users(self,search,pageSize,page,headers):
         path = "/admin/n/users"
         if search == None:
             res = requests.get(self.url+path,params={
@@ -77,6 +77,7 @@ class Interface:
                 "page":page,
                 "search":search
             },headers=headers)
+        print(pageSize,page,search)
         return res
     #添加用户
     def usersAdd(self,username,name,phone,email,role,password,headers):
@@ -89,12 +90,18 @@ class Interface:
             "role":role,
             "password":password,
         },headers=headers)
+        print("username",username)
+        print("name",name)
+        print("phone",phone)
+        print("email",email)
+        print("role",role)
+        print("password",password)
         return res
         '''role:Admin,Owner,SalesAgent,Picker,Checker'''
     #修改用户信息
     def userEdit(self,uuid,role,name,email,phone,headers):
         path = "/admin/n/users/"
-        res = requests.patch(self.url+path+uuid,params={
+        res = requests.patch(self.url+path+uuid,json={
             "role":role,
             "name":name,
             "email":email,
@@ -104,12 +111,13 @@ class Interface:
     #修改用户密码
     def password(self,uuid,password,headers):
         path = "/admin/n/users/"
-        res = requests.put(self.url+path+uuid+"/password",params={
+        res = requests.put(self.url+path+uuid+"/password",json={
             "password":password
         },headers=headers)
+        print(password)
         return res
     #注销用户
-    def password(self,uuid,headers):
+    def usersDelete(self,uuid,headers):
         path = "/admin/n/users/"
         res = requests.delete(self.url+path+uuid
         ,headers=headers)

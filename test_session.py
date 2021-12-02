@@ -1,4 +1,3 @@
-from requests.sessions import session
 from TestInterface import Interface
 from Common import GBK2312, TimeNow, Unicode, loginOne, loginTwo
 inter = Interface()

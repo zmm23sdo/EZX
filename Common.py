@@ -91,5 +91,51 @@ def loginTwo():
     # print("access",access)
     # print("create",create)
     # print("expiry",expiry)
-    print("refresh",refresh)
+    print("-"*100)
+    print("loginTwo_refresh",refresh)
+    print("-"*100)
     return refresh
+
+def loginEZ():
+    loginEZ = inter.sessionPatch(
+        company	 = 1,
+        headers = {'Authorization': loginTwo()}
+    
+    )
+    # print("="*100)
+    # print("切换公司 EZ",loginEZ.json())
+    # print("="*100)
+    access = str(loginEZ.json()['access'])
+    create = str(loginEZ.json()['create'])
+    expiry = str(loginEZ.json()['expiry'])
+    refresh = str(loginEZ.json()['refresh'])
+    # print("access",access)
+    # print("create",create)
+    # print("expiry",expiry)
+    print("="*100)
+    print("loginEZ_refresh",refresh)
+    print("="*100)
+    return refresh
+
+def loginGogocar():
+    loginGogocar = inter.sessionPatch(
+        company	 = 2,
+        headers = {'Authorization': loginTwo()}
+    
+    )
+    # print("="*100)
+    # print("切换公司 Gogocar",loginGogocar.json())
+    # print("="*100)
+    access = str(loginGogocar.json()['access'])
+    create = str(loginGogocar.json()['create'])
+    expiry = str(loginGogocar.json()['expiry'])
+    refresh = str(loginGogocar.json()['refresh'])
+    # print("access",access)
+    # print("create",create)
+    # print("expiry",expiry)
+    print("="*100)
+    print("loginGogocar_refresh",refresh)
+    print("="*100)
+    return refresh
+
+
