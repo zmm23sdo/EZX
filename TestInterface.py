@@ -191,10 +191,14 @@ class Interface:
             },headers=headers)
         return res
     #修改产品图片
-    def productsCode(self,code,img,headers):
+    def productsCode(self,code,img,name,net_price,qty,type,headers):
         path = "/admin/n/products/"
-        res = requests.put(self.url+path+code,params={
-            "img":img
+        res = requests.put(self.url+path+code,json={
+            "img":img,
+            "name":name,
+            "net_price":net_price,
+            "qty":qty,
+            "type":type
         },headers=headers)
         return res
     #获取oss授权
