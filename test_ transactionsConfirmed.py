@@ -306,7 +306,7 @@ def test_confirmedApproval2():
     print("#13.批准confirmed订单[参数未绑定审核提交]",test_confirmedApproval2.json())
     print("="*100)
 # test_confirmedApproval2()
-    # assert str(test_confirmedApproval2.status_code) == "200"
+    assert str(test_confirmedApproval2.json()['code']) == "401.7"
 
 
 #15.批准confirmed订单[参数绑定后审核提交]
@@ -349,6 +349,8 @@ def test_confirmedApproval3():
     print("#15.批准confirmed订单[参数绑定后审核提交]",test_confirmedApproval3.json())
     print("="*100)
 # test_confirmedApproval3()
+    assert str(test_confirmedApproval3  .json()['code']) == "200"
+
 
 
 

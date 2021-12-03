@@ -424,7 +424,7 @@ class Interface:
     #取消transferred订单
     def transferredCancel(self,doc_id,reason,headers):
         path = "/admin/n/transactions/transferred/"
-        res = requests.delete(self.url+path+doc_id,params={
+        res = requests.delete(self.url+path+doc_id,json={
             "reason":reason
         },headers=headers)
         return res
@@ -434,7 +434,7 @@ class Interface:
                                 admin_remark,credit_term,picker,
                                 picker_remark,checker,checker_remark,headers):
         path = "/admin/n/transactions/transferred/"
-        res = requests.put(self.url+path+doc_id+"/general",params={
+        res = requests.put(self.url+path+doc_id+"/general",json={
             "customer":customer,
             "doc_date":doc_date,
             "shop_name":shop_name,
@@ -452,17 +452,15 @@ class Interface:
     #修改transferred订单商品信息
     def transferredDetail(self,doc_id,index,sold_qty,headers):
         path = "/admin/n/transactions/transferred/"
-        res = requests.put(self.url+path+doc_id+"/detail",params=[{
+        res = requests.put(self.url+path+doc_id+"/detail",json=[{
             "index":index,
             "sold_qty":sold_qty
         }],headers=headers)
         return res
     #提交勾选订单*
-    def complete(self,value,headers):
+    def complete(self,headers):
         path = "/admin/n/transactions/transferred/complete"
-        res = requests.post(self.url+path,params=[
-            value
-        ],headers=headers)
+        res = requests.post(self.url+path,headers=headers)
         return res
 
 
@@ -470,10 +468,10 @@ class Interface:
     #获取订单历史
     def orderHistory(self,doc_id,pageSize,page,headers):
         path = "/admin/n/orderHistory/"
-        res = requests.get(self.url+path+doc_id,params=[{
+        res = requests.get(self.url+path+doc_id,params={
             "pageSize":pageSize,
             "page":page
-        }],headers=headers)
+        },headers=headers)
         return res
 
 
@@ -496,9 +494,12 @@ class Interface:
         '''status:订单状态 1-pending 2-pick pending 3-check pending 
         4-Stock Exception 5-Packed 6-delivery pending 7-cancel'''
     #获取post订单详情
-    def postDocid(self,doc_id,headers):
+    def postDocid(self,doc_id,pageSize,page,headers):
         path = "/admin/n/transactions/post/"
-        res = requests.get(self.url+path+doc_id,headers=headers)
+        res = requests.get(self.url+path+doc_id,params={
+            "pageSize":pageSize,
+            "page":page
+        },headers=headers)
         return res
 
 
@@ -519,6 +520,7 @@ class Interface:
         res = requests.get(self.url+path,params={
             "username":username
         },headers=headers)
+        print("username",username)
         return res
     #email验证唯一性
     def email(self,email,headers):
@@ -526,4 +528,5 @@ class Interface:
         res = requests.get(self.url+path,params={
             "email":email
         },headers=headers)
+        print("email",email)
         return res
