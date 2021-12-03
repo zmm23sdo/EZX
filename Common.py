@@ -62,7 +62,7 @@ def Now():
 def NowDate():
     now_time = datetime.datetime.now().strftime('%Y-%m-%d')
     now_time = str(now_time)
-    print(now_time)
+    # print(now_time)
     return now_time
 
 def loginOne():

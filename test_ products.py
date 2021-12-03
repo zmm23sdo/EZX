@@ -1,4 +1,3 @@
-import json
 from TestInterface import Interface
 from Common import GBK2312, TimeNow, Unicode, loginEZ, loginOther
 import random

@@ -212,7 +212,7 @@ class Interface:
 
     '''【transactionsConfirmed】'''
     #获取订单号
-    def orderNumber(self,userDir,headers):
+    def orderNumber(self,headers):
         path = "/admin/n/orderNumber"
         res = requests.get(self.url+path,headers=headers)
         return res
@@ -230,6 +230,7 @@ class Interface:
             "page":page,
             "status":status
         },headers=headers)
+        print(pageSize,page,status)
         return res
         '''status:订单状态 1-pending 2-pick pending 3-check pending 
         4-Stock Exception 5-Packed 6-delivery pending 7-cancel'''
@@ -271,7 +272,7 @@ class Interface:
     def general(self,doc_id,customer,doc_date,shop_name,customer_name,
                      address,sales_agent,admin_remark,credit_term,headers):
         path = "/admin/n/transactions/confirmed/"
-        res = requests.put(self.url+path+doc_id+"/general",params={
+        res = requests.put(self.url+path+doc_id+"/general",json={
         "customer":customer,
         "doc_date":doc_date,
         "shop_name":shop_name,
@@ -301,14 +302,14 @@ class Interface:
     #取消confirmed订单
     def confirmedCancel(self,doc_id,reason,headers):
         path = "/admin/n/transactions/confirmed/"
-        res = requests.delete(self.url+path+doc_id,params={
+        res = requests.delete(self.url+path+doc_id,json={
         "reason":reason
         },headers=headers)
         return res
     #修改confirm订单商品信息
     def detail(self,doc_id,index,discount,sold_price,sold_qty,foc,headers):
         path = "/admin/n/transactions/confirmed/"
-        res = requests.put(self.url+path+doc_id+"/detail",params=[{
+        res = requests.put(self.url+path+doc_id+"/detail",json=[{
         "index":index,
         "discount":discount,
         "sold_price":sold_price,
@@ -333,11 +334,14 @@ class Interface:
             "page":page,
             "status":status
         },headers=headers)
+        # print("pageSize",pageSize)
+        # print("page",page)
+        # print("status",status)
         return res
         '''status:订单状态 1-pending 2-pick pending 3-check pending 
         4-Stock Exception 5-Packed 6-delivery pending 7-cancel'''
     #app订单详情
-    def confirmedDocid(self,doc_id,pageSize,page,headers):
+    def confirmedDocidApp(self,doc_id,pageSize,page,headers):
         path = "/admin/n/transactions/app/"
         res = requests.get(self.url+path+doc_id,params={
         "pageSize":pageSize,
