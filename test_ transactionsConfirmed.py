@@ -306,7 +306,7 @@ def test_confirmedApproval2():
     print("#13.批准confirmed订单[参数未绑定审核提交]",test_confirmedApproval2.json())
     print("="*100)
 # test_confirmedApproval2()
-    # assert str(test_confirmedApproval2.status_code) == "404"
+    # assert str(test_confirmedApproval2.status_code) == "200"
 
 
 #15.批准confirmed订单[参数绑定后审核提交]
@@ -398,9 +398,7 @@ def test_confirmedCancel2():
     print("#17.取消confirmed订单[参数未绑定审核提交]",test_confirmedCancel2,test_confirmedCancel2.text)
     print("="*100)
 # test_confirmedCancel2()
-    # assert str(test_confirmedCancel2.status_code) == "404"
-
-
+    assert str(test_confirmedCancel2.status_code) == "200"
 #18.取消confirmed订单[参数绑定审核后提交]
 def test_confirmedCancel3():
     confirmedAdd = inter.confirmedAdd(
@@ -442,8 +440,7 @@ def test_confirmedCancel3():
     print("#18.取消confirmed订单[参数绑定审核后提交]",test_confirmedCancel3,test_confirmedCancel3.text)
     print("="*100)
 # test_confirmedCancel3()
-
-
+    assert str(test_confirmedCancel3.status_code) == "200"
 #19.修改confirm订单商品信息[参数空值提交]
 def test_detail1():
     test_detail1 = inter.detail(

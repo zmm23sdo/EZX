@@ -422,7 +422,7 @@ class Interface:
         },headers=headers)
         return res
     #取消transferred订单
-    def transferredDocid(self,doc_id,reason,headers):
+    def transferredCancel(self,doc_id,reason,headers):
         path = "/admin/n/transactions/transferred/"
         res = requests.delete(self.url+path+doc_id,params={
             "reason":reason
