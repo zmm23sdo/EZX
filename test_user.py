@@ -193,7 +193,7 @@ def test_password1():
     print("10.修改用户密码[参数空值提交]",test_password1.json())
     print("="*100)
 # test_password1()
-    # assert str(test_password1.json()['code']) == "400.1"
+    assert str(test_password1.json()['code']) == "401.11"
 #11.修改用户密码[参数正则提交]
 def test_password2():
     username = "mvtest"+str(random.randint(0,1000))
