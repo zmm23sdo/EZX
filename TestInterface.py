@@ -269,18 +269,10 @@ class Interface:
         },headers=headers)
         return res
     #修改confirm订单基本信息
-    def general(self,doc_id,customer,doc_date,shop_name,customer_name,
-                     address,sales_agent,admin_remark,credit_term,headers):
+    def general(self,doc_id,admin_remark,headers):
         path = "/admin/n/transactions/confirmed/"
         res = requests.put(self.url+path+doc_id+"/general",json={
-        "customer":customer,
-        "doc_date":doc_date,
-        "shop_name":shop_name,
-        "customer_name":customer_name,
-        "address":address,
-        "sales_agent":sales_agent,
-        "admin_remark":admin_remark,
-        "credit_term":credit_term
+        "admin_remark":admin_remark
         },headers=headers)
         return res
     ##修改confirm订单商品信息
@@ -429,24 +421,10 @@ class Interface:
         },headers=headers)
         return res
     #修改transferred订单基本信息
-    def transferredGeneral(self,doc_id,customer,doc_date,shop_name,
-                                customer_name,address,sales_agent,
-                                admin_remark,credit_term,picker,
-                                picker_remark,checker,checker_remark,headers):
+    def transferredGeneral(self,doc_id,admin_remark,headers):
         path = "/admin/n/transactions/transferred/"
         res = requests.put(self.url+path+doc_id+"/general",json={
-            "customer":customer,
-            "doc_date":doc_date,
-            "shop_name":shop_name,
-            "customer_name":customer_name,
-            "address":address,
-            "sales_agent":sales_agent,
-            "admin_remark":admin_remark,
-            "credit_term":credit_term,
-            "picker":picker,
-            "picker_remark":picker_remark,
-            "checker":checker,
-            "checker_remark":checker_remark
+            "admin_remark":admin_remark
         },headers=headers)
         return res
     #修改transferred订单商品信息
@@ -460,7 +438,9 @@ class Interface:
     #提交勾选订单*
     def complete(self,headers):
         path = "/admin/n/transactions/transferred/complete"
-        res = requests.post(self.url+path,headers=headers)
+        res = requests.post(self.url+path,json=[
+            "SO-YUA-2021-0001"
+        ],headers=headers)
         return res
 
 
@@ -505,10 +485,10 @@ class Interface:
 
     '''【export】'''
     #导出勾选订单
-    def export(self,value,headers):
+    def export(self,headers):
         path = "/admin/n/export"
-        res = requests.post(self.url+path,params=[
-            value
+        res = requests.post(self.url+path,json=[
+            "SO-YUA-2021-0001"
         ],headers=headers)
         return res
 

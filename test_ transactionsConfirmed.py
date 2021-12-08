@@ -155,15 +155,8 @@ def test_confirmedDocid2():
 #9.修改confirm订单基本信息[参数空值提交]
 def test_general1():
     test_general1 = inter.general(
-        doc_id = "", 
-        customer = "", 
-        doc_date = "", 
-        shop_name = "", 
-        customer_name = "", 
-        address = "", 
-        sales_agent = "", 
+        doc_id = "",
         admin_remark = "", 
-        credit_term = "", 
         headers = {'Authorization': loginEZ()}
     )
     print("="*100)
@@ -198,14 +191,7 @@ def test_general2():
     print("="*100)
     test_general2 = inter.general(
         doc_id = doc_idAdd, 
-        customer = "300-W003", 
-        doc_date = Now(), 
-        shop_name = "WAH PERFECT ZONE CAR AIR-COND & ACCESSORIES", 
-        customer_name = "WAH", 
-        address = "NO. 52 PUSAT PERNIAGAAN KM 2 KM 2 JLN. LIPIS 27600 RAUB,PAHANG", 
-        sales_agent = "RYAN", 
         admin_remark = "TestEdit"+str(random.randint(0,100)), 
-        credit_term = "90", 
         headers = {'Authorization': loginEZ()}
     )
     print("="*100)
@@ -247,14 +233,7 @@ def test_general3():
     print("="*100)
     test_general3 = inter.general(
         doc_id = doc_idAdd, 
-        customer = "300-W003", 
-        doc_date = Now(), 
-        shop_name = "WAH PERFECT ZONE CAR AIR-COND & ACCESSORIES", 
-        customer_name = "WAH", 
-        address = "NO. 52 PUSAT PERNIAGAAN KM 2 KM 2 JLN. LIPIS 27600 RAUB,PAHANG", 
-        sales_agent = "RYAN", 
         admin_remark = "TestEdit"+str(random.randint(0,100)), 
-        credit_term = "90", 
         headers = {'Authorization': loginEZ()}
     )
     print("="*100)

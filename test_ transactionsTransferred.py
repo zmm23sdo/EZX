@@ -144,18 +144,7 @@ def test_transferredCancel2():
 def test_transferredGeneral1():
     test_transferredGeneral1 = inter.transferredGeneral(
         doc_id = "", 
-        customer = "", 
-        doc_date = "", 
-        shop_name = "", 
-        customer_name = "", 
-        address = "", 
-        sales_agent = "", 
-        admin_remark = "", 
-        credit_term = "", 
-        picker = "", 
-        picker_remark = "", 
-        checker = "", 
-        checker_remark = "", 
+        admin_remark = "",
         headers = {'Authorization': loginEZ()}
     )
     print("="*100)
@@ -175,20 +164,16 @@ def test_transferredGeneral2():
     print("="*100)
     print("获取transferred订单",transferredGet,transferredGet.json())
     print("="*100)
+    auditAdd = inter.audit(
+        doc_id = doc_idTransferred, 
+        headers = {'Authorization': loginEZ()}
+    )
+    print("="*100)
+    print("绑定审核",auditAdd.json())
+    print("="*100)
     test_transferredGeneral2 = inter.transferredGeneral(
         doc_id = doc_idTransferred, 
-        customer = "WAH", 
-        doc_date = Now(), 
-        shop_name = "WAH PERFECT ZONE CAR AIR-COND & ACCESSORIES", 
-        customer_name = "", 
-        address = "NO. 52 PUSAT PERNIAGAAN KM 2 KM 2 JLN. LIPIS 27600 RAUB,PAHANG      ", 
-        sales_agent = "RYAN", 
-        admin_remark = "Admin Remark"+str(random.randint(0,100)), 
-        credit_term = "90", 
-        picker = "", 
-        picker_remark = "", 
-        checker = "", 
-        checker_remark = "", 
+        admin_remark = "Admin Remark"+str(random.randint(0,100)),
         headers = {'Authorization': loginEZ()}
     )
     print("="*100)
@@ -221,6 +206,13 @@ def test_transferredDetail2():
     print("="*100)
     print("获取transferred订单",transferredGet,transferredGet.json())
     print("="*100)
+    auditAdd = inter.audit(
+        doc_id = doc_idTransferred, 
+        headers = {'Authorization': loginEZ()}
+    )
+    print("="*100)
+    print("绑定审核",auditAdd.json())
+    print("="*100)
     test_transferredDetail2 = inter.transferredDetail(
         doc_id = doc_idTransferred, 
         index = 0, 
@@ -244,6 +236,6 @@ def test_complete():
     print("#12.提交勾选订单[正则提交]",test_complete,test_complete.json())
     print("="*100)
 # test_complete()
-    # assert str(test_complete.status_code) == "200"
+    assert str(test_complete.status_code) == "200"
 
 

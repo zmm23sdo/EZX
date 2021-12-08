@@ -63,7 +63,7 @@ def test_usersAdd1():
     assert str(test_usersAdd1.json()['code']) == "400.1"
 #5.添加用户[参数正则提交]
 def test_usersAdd2():
-    username = "mvtest"+str(random.randint(0,100))
+    username = "mtest"+str(random.randint(0,100))
     email = username+"@users.com"
     test_usersAdd2 = inter.usersAdd(
         username = username, 
@@ -75,10 +75,10 @@ def test_usersAdd2():
         headers = {'Authorization': loginEZ()}
     )
     print("="*100)
-    print("#5.添加用户[参数正则提交]",test_usersAdd2.json())
+    print("#5.添加用户[参数正则提交]",test_usersAdd2.json(),test_usersAdd2)
     print("="*100)
 # test_usersAdd2()
-    assert str(test_usersAdd2.status_code) == "200"
+    assert str(test_usersAdd2.status_code) == "201"
 #6.添加用户[参数用户名已存在提交]
 def test_usersAdd3():
     username = "mvtest"+str(random.randint(0,100))
@@ -129,7 +129,7 @@ def test_userEdit2():
     assert str(test_userEdit2.json()['code']) == "400.1"
 #9.修改用户信息[参数正则提交]
 def test_userEdit3():
-    username = "mvtest"+str(random.randint(0,100))
+    username = "mvest"+str(random.randint(0,100))
     email = username+"@users.com"
     addUsers = inter.usersAdd(
         username = username, 
