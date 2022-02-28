@@ -1,4 +1,4 @@
-from TestInterface import Interface
+from API.TestInterface import Interface
 
 import pytest
 import json
@@ -67,12 +67,12 @@ def NowDate():
 
 def loginOne():
     login = inter.verify(
-        username = "zhangmingwei", 
-        password = "qwer1234", 
+        username = "mingv", 
+        password = "qwer`1234", 
         platform = "admin"
     )
     # print(login.json())
-    expiry = str(login.json()['expiry'])
+    # expiry = str(login.json()['expiry'])
     token = str(login.json()['token'])
     # print("expiry",expiry)
     # print("token",token)
